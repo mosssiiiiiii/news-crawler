@@ -3,23 +3,22 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const StatsPlugin = require('stats-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const distDir = path.resolve(process.cwd(), '.' + '/dist');
 const srcDir = path.resolve(process.cwd(), './src/render');
 
 const client = {
-        name: 'client',
-        mode: 'production',
-        target: 'web',
-        performance: {hints: false},
-        entry: [`${srcDir}/client.js`],
-        output: {
-            path: distDir,
-            filename: 'client.js',
-            publicPath: distDir
-        },
+    name: 'client',
+    mode: 'production',
+    target: 'web',
+    performance: {hints: false},
+    entry: [`${srcDir}/client.js`],
+    output: {
+        path: distDir,
+        filename: 'client.js',
+        publicPath: distDir
+    },
     module: {
         rules: [
             {
@@ -95,7 +94,7 @@ const client = {
             })
         ]
     }
-    };
+};
 const server = {
     name: 'server',
     mode: 'production',
@@ -107,10 +106,6 @@ const server = {
         filename: 'server.js',
         libraryTarget: 'commonjs2',
         publicPath: distDir,
-    },
-    externals: {
-        bufferutil: 'commonjs bufferutil',
-        'utf-8-validate': 'commonjs utf-8-validate',
     },
     module: {
         rules: [
@@ -128,15 +123,6 @@ const server = {
                 use: 'ignore-loader'
             }
         ],
-    },
-    plugins: [
-
-        new StatsPlugin('stats.json', {
-            chunkModules: true,
-            modules: true,
-            chunks: true,
-            exclude: [/node_modules[\\\/]react/],
-        }),
-    ],
+    }
 };
-module.exports = [client,server];
+module.exports = [client, server];
