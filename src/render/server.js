@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import {StaticRouter} from 'react-router-dom';
 import {Helmet} from "react-helmet";
 import Template from './template';
-import App from '../App/App';
+import App from '../App';
 
 
 export default function serverRenderer({clientStats, serverStats}) {
